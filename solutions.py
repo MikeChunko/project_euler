@@ -1,5 +1,6 @@
 import math
 import time
+import sys
 
 
 def problem_8(n):
@@ -39,7 +40,26 @@ def problem_8(n):
     return int(maximum)
 
 
+def problem_9(n):
+    """ Return the product of a, b, and c where a + b + c = n and a, b, and c are a pythagorean triplet.
+        Return "-1" if no valid pythagorean triple is found. """
+    for a in range(1, n):
+        b = a + 1
+        c = b + 1
+        while c < n:
+            while c ** 2 < a ** 2 + b ** 2:
+                c += 1
+            if c ** 2 == a ** 2 + b ** 2:
+                print("Triple found")
+                if a + b + c == n:
+                    print("Correct found")
+                    return a * b * c
+            b += 1
+
+    return -1
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_8(13))
+    print(problem_9(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
