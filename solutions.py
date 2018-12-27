@@ -59,7 +59,27 @@ def problem_9(n):
     return -1
 
 
+def problem_10(n):
+    """ Return the sum of all primes below n. """
+    primes = [2, 3, 5]
+
+    # Basic prime finder
+    # Not super efficient but it works
+    for n in range(7, n, 2):
+        if n % 5 != 0:
+            is_prime = True
+            for i in range(3, math.ceil(math.sqrt(n)) + 1, 2):
+                if n % i == 0:
+                    is_prime = False
+                    break
+
+            if is_prime:
+                primes += [n]
+    print(primes)
+    return sum(primes)
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_9(1000))
+    print(problem_10(2 * (10 ** 6)))
     print("--- %s seconds ---" % (time.time() - start_time))
