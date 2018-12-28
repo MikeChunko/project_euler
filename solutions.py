@@ -79,7 +79,27 @@ def problem_10(n):
     return sum(primes)
 
 
+def problem_12(n):
+    """ Return the value of the first triangle number to have over n divisors.
+        Return "-1" if none are found.
+        Currently incredibly slow but yields the correct answer. """
+    current_triangle_num = 1
+
+    for i in range(2, sys.maxsize):
+        # 1 and the number itself will always be divisors
+        divisor_count = 2
+        current_triangle_num += i
+        print(current_triangle_num)
+
+        for j in range(2, current_triangle_num // 2 + 1):
+            if current_triangle_num % j == 0:
+                divisor_count += 1
+                if divisor_count > n:
+                    return current_triangle_num
+    return -1
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_10(2 * (10 ** 6)))
+    print(problem_12(500))
     print("--- %s seconds ---" % (time.time() - start_time))
