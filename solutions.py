@@ -1,10 +1,20 @@
+# File name: solutions.py
+# Author: Michael Chunko
+# Date created: 12/23/18
+# Python Version: 3.7
+
 import math
 import time
 import sys
 
 
+# Problems 1-7 were completed separately and are not current included in this file.
+# They may be resolved and added at a later date
+
 def problem_8(n):
-    """ Return the product of the n adjacent digits in the provided number with the greatest product. """
+    """ Return the product of the n adjacent digits in the provided number with the greatest product.
+        Previous product represents the sum of n - 1 adjacent digits so that when the next product is found,
+        rather than multiplying n numbers again, previous product can instead be multiplied by a single number. """
     big_num = "731671765313306249192251196744265747423553491949349698352031277450632623957831801698480\n" \
               "186947885184385861560789112949495459501737958331952853208805511125406987471585238630507\n" \
               "156932909632952274430435576689664895044524452316173185640309871112172238311362229893423\n" \
@@ -42,25 +52,25 @@ def problem_8(n):
 
 def problem_9(n):
     """ Return the product of a, b, and c where a + b + c = n and a, b, and c are a pythagorean triplet.
-        Return "-1" if no valid pythagorean triple is found. """
+        Return "-1" if no valid pythagorean triple is found.
+        Use a combination of loops to reasonably efficiently find pythagorean triples then check if they match
+        the conditions. """
     for a in range(1, n):
         b = a + 1
         c = b + 1
         while c < n:
             while c ** 2 < a ** 2 + b ** 2:
                 c += 1
-            if c ** 2 == a ** 2 + b ** 2:
-                print("Triple found")
-                if a + b + c == n:
-                    print("Correct found")
-                    return a * b * c
+            if c ** 2 == a ** 2 + b ** 2 and a + b + c == n:
+                return a * b * c
             b += 1
 
     return -1
 
 
 def problem_10(n):
-    """ Return the sum of all primes below n. """
+    """ Return the sum of all primes below n.
+        Use a very simple prime finder. """
     primes = [2, 3, 5]
 
     # Basic prime finder
@@ -79,10 +89,11 @@ def problem_10(n):
     return sum(primes)
 
 
+# Currently incredibly slow but yields the correct answer
 def problem_12(n):
     """ Return the value of the first triangle number to have over n divisors.
         Return "-1" if none are found.
-        Currently incredibly slow but yields the correct answer. """
+        Manually check to see which numbers are divisors and keep a running tally to see if the value crosses n. """
     current_triangle_num = 1
 
     for i in range(2, sys.maxsize):
@@ -101,8 +112,7 @@ def problem_12(n):
 
 def problem_13(n):
     """ Return the first n digits of the sum of the 100 following 50-digit numbers.
-        Only simple list comprehension was needed due to runtime being incredibly low to simply sum 100
-        relatively small numbers. """
+        Use simple list comprehension and the built-in sum() function. """
     numbers_as_str = "37107287533902102798797998220837590246510135740250\n" \
                      "46376937677490009712648124896970078050417018260538\n" \
                      "74324986199524741059474233309513058123726617309629\n" \
@@ -210,5 +220,5 @@ def problem_13(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_13(10))
+    print(problem_9(400))
     print("--- %s seconds ---" % (time.time() - start_time))
