@@ -218,7 +218,44 @@ def problem_13(n):
     return str(summation)[:n]
 
 
+def problem_14(n):
+    """ Given the iterative sequence defined as: n → n/2 (n is even), n → 3n + 1 (n is odd)
+        Return the starting number, under n, which produces the longest chain before reaching 1.
+        Use the fact that any power of 2 has a known distance to the end to speed up run time. """
+    longest = (0, 1)  # (chain length, number)
+    memo = {}
+
+    for i in range(1, n):
+        current_chain = 1
+        current_number = i
+
+        while current_number != 1:
+            if current_number in memo:
+                current_chain += memo[current_number]
+                break
+
+            # True if current_number is a power of 2
+            if not current_number & (current_number - 1):
+                while current_number > 1:
+                    current_number /= 2
+                    current_chain += 1
+                break
+
+            if current_number % 2 == 0:
+                current_number = current_number // 2
+            else:
+                current_number = 3 * current_number + 1
+
+            current_chain += 1
+
+        if current_chain > longest[0]:
+            longest = (current_chain, i)
+        memo[i] = current_chain
+
+    return longest[1]
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_9(400))
+    print(problem_14(1 * 10 ** 6))
     print("--- %s seconds ---" % (time.time() - start_time))
