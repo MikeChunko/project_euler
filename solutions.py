@@ -255,7 +255,30 @@ def problem_14(n):
     return longest[1]
 
 
+def problem_15(n):
+    """ Return the number of lattice paths for a n x n grid where you always start in the top left corner
+        and can only move down and right.
+        Through experimentation, it's found that the answer is equal to the center number on the 2*nth row of
+        Pascal's triangle. """
+
+    def pascals_triangle(previous_row):
+        new_row = []
+        for i in range(0, len(previous_row) - 1):
+            new_row += [previous_row[i] + previous_row[i + 1]]
+        new_row = [1] + new_row + [1]
+        return new_row
+
+    current_row = [1, 1]
+    iteration = 1
+    while iteration < n * 2:
+        iteration += 1
+        current_row = pascals_triangle(current_row)
+
+    # In this case the index of the center number is always equal to n
+    return current_row[n]
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_14(1 * 10 ** 6))
+    print(problem_16(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
