@@ -284,7 +284,49 @@ def problem_16(n):
     return sum([int(x) for x in str(2 ** n)])
 
 
+def problem_17(n):
+    """ Return the sum of the letters used to write the number from 1  to n (inclusive).
+        n: an integer between 1 and 1000 (inclusive).
+        The code is ugly but simply goes through a series of cases, constructing the length of the word to represent
+        various numbers. """
+
+    # Dictionaries containing the lengths of various numbers
+    singles_place = [3, 3, 5, 4, 4, 3, 5, 5, 4]  # lengths for [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ten = [3, 6, 6, 8, 8, 7, 7, 9, 8, 8]  # lengths for [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    tens_place = [5, 6, 6, 5, 5, 7, 6, 6]  # lengths for [20, 30, 40, 50, 60, 70, 80, 90]
+    hundred = 7  # length of 100
+    thousand = 8  # length of 1000
+
+    running_total = 0
+    for i in range(1, n + 1):
+        if i < 10:
+            running_total += singles_place[i - 1]
+        elif i < 20:
+            running_total += ten[i % 10]
+        elif i < 100:
+            running_total += tens_place[i // 10 - 2]
+            if i % 10 != 0:
+                running_total += singles_place[i % 10 - 1]
+        elif i < 1000:
+            running_total += singles_place[i // 100 - 1]
+            running_total += hundred + 3  # 3 represents the length of 'and'
+            if i % 100 == 0:
+                running_total -= 3  # Remove the 'and' if there is nothing following the 'hundred'
+            elif i % 100 < 10:
+                running_total += singles_place[i % 100 - 1]
+            elif i % 100 < 20:
+                running_total += ten[i % 100 - 10]
+            else:
+                running_total += tens_place[(i % 100) // 10 - 2]
+                if i % 10 != 0:
+                    running_total += singles_place[i % 10 - 1]
+        elif i == 1000:
+            running_total += singles_place[0] + thousand
+
+    return running_total
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_16(1000))
+    print(problem_17(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
