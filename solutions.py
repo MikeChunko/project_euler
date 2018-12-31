@@ -278,6 +278,12 @@ def problem_15(n):
     return current_row[n]
 
 
+def problem_16(n):
+    """ Return the sum of the digits of 2 ** n.
+        Use list comprehension to solve. """
+    return sum([int(x) for x in str(2 ** n)])
+
+
 if __name__ == "__main__":
     start_time = time.time()
     print(problem_16(1000))
