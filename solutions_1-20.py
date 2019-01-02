@@ -11,7 +11,7 @@ import time
 import sys
 
 
-# Problems 1-7 were completed separately and are not current included in this file.
+# Problems 3-7 were completed separately and are not current included in this file.
 # They may be resolved and added at a later date
 
 def problem_1(n):
@@ -25,7 +25,7 @@ def problem_1(n):
 
 
 def problem_2(n):
-    """ Find the sum of the even valued terms of the Fibonacci sequence not exceeding n. """
+    """ Return the sum of the even valued terms of the Fibonacci sequence not exceeding n. """
     running_sum = previous_term = 0
     current_term = 1
 
@@ -37,6 +37,18 @@ def problem_2(n):
         previous_term = current_term - previous_term
 
     return running_sum
+
+
+def problem_3(n):
+    """ Return the largest prime factor of n. """
+    i = 2
+    while i * i <= n:
+        while n % i == 0:
+            n /= i
+
+        i = i + 1
+
+    return n
 
 
 def problem_8(n):
@@ -441,5 +453,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_2(4 * 10 ** 6))
+    print(problem_3(600851475143))
     print("--- %s seconds ---" % (time.time() - start_time))
