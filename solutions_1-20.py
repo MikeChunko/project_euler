@@ -408,7 +408,13 @@ def problem_19():
     return sunday_count
 
 
+def problem_20(n):
+    """ Return the sum of the digits of n!.
+        With small numbers the problem can be easily solved in one line. """
+    return sum([int(x) for x in str(math.factorial(n))])
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_19())
+    print(problem_20(100))
     print("--- %s seconds ---" % (time.time() - start_time))
