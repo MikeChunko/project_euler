@@ -24,6 +24,21 @@ def problem_1(n):
     return running_sum
 
 
+def problem_2(n):
+    """ Find the sum of the even valued terms of the Fibonacci sequence not exceeding n. """
+    running_sum = previous_term = 0
+    current_term = 1
+
+    while current_term < n:
+        if current_term % 2:
+            running_sum += current_term
+
+        current_term = current_term + previous_term
+        previous_term = current_term - previous_term
+
+    return running_sum
+
+
 def problem_8(n):
     """ Return the product of the n adjacent digits in the provided number with the greatest product.
         Previous product represents the sum of n - 1 adjacent digits so that when the next product is found,
@@ -426,5 +441,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_1(1000))
+    print(problem_2(4 * 10 ** 6))
     print("--- %s seconds ---" % (time.time() - start_time))
