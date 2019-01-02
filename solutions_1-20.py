@@ -14,6 +14,16 @@ import sys
 # Problems 1-7 were completed separately and are not current included in this file.
 # They may be resolved and added at a later date
 
+def problem_1(n):
+    """ Return the sum of all multiples of 3 or 5 below n. """
+    running_sum = 0
+    for i in range(1, n):
+        if i % 3 == 0 or i % 5 == 0:
+            running_sum += i
+
+    return running_sum
+
+
 def problem_8(n):
     """ Return the product of the n adjacent digits in the provided number with the greatest product.
         Previous product represents the sum of n - 1 adjacent digits so that when the next product is found,
@@ -416,5 +426,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_20(100))
+    print(problem_1(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
