@@ -84,6 +84,26 @@ def problem_6(n):
     return abs(sum_of_square - square_of_sum ** 2)
 
 
+def problem_7(n):
+    """ Return the nth prime number, assuming 2 is the first prime. """
+    prime_count = 1
+    current_num = 3
+    while prime_count < n:
+        print(current_num)
+        is_prime = True
+        for i in range(3, math.ceil(math.sqrt(current_num)) + 1, 2):
+            if current_num % i == 0:
+                is_prime = False
+                break
+
+        if is_prime:
+            prime_count += 1
+
+        current_num += 2
+
+    return current_num - 2
+
+
 def problem_8(n):
     """ Return the product of the n adjacent digits in the provided number with the greatest product.
         Previous product represents the sum of n - 1 adjacent digits so that when the next product is found,
@@ -486,5 +506,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_6(100))
+    print(problem_7(10001))
     print("--- %s seconds ---" % (time.time() - start_time))
