@@ -73,6 +73,17 @@ def problem_5(n):
             return i
 
 
+def problem_6(n):
+    """ Return the difference between the sum of the squares of the first n natural numbers
+        and the square of the sum. """
+    square_of_sum = sum_of_square = 0
+    for i in range(1, n + 1):
+        square_of_sum += i
+        sum_of_square += i ** 2
+
+    return abs(sum_of_square - square_of_sum ** 2)
+
+
 def problem_8(n):
     """ Return the product of the n adjacent digits in the provided number with the greatest product.
         Previous product represents the sum of n - 1 adjacent digits so that when the next product is found,
@@ -475,5 +486,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_5(20))
+    print(problem_6(100))
     print("--- %s seconds ---" % (time.time() - start_time))
