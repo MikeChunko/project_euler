@@ -11,9 +11,6 @@ import time
 import sys
 
 
-# Problems 3-7 were completed separately and are not current included in this file.
-# They may be resolved and added at a later date
-
 def problem_1(n):
     """ Return the sum of all multiples of 3 or 5 below n. """
     running_sum = 0
@@ -49,6 +46,18 @@ def problem_3(n):
         i = i + 1
 
     return n
+
+
+def problem_4(n):
+    """ Return the largest palindrome that can be made as the product of two n-digit numbers. """
+    largest = 0
+    for i in range(10 ** (n - 1), 10 ** n):
+        for j in range(i, 10 ** n):
+            product = i * j
+            if str(product) == str(product)[::-1] and product > largest:
+                largest = product
+
+    return largest
 
 
 def problem_8(n):
@@ -453,5 +462,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_3(600851475143))
+    print(problem_4(3))
     print("--- %s seconds ---" % (time.time() - start_time))
