@@ -60,6 +60,19 @@ def problem_4(n):
     return largest
 
 
+def problem_5(n):
+    """ Return the smallest positive number that is evenly divisible by all of the numbers from 1 to n.
+        n: an integer greater than 2"""
+    for i in range(n, sys.maxsize, n):
+        current_num = n
+        print(i)
+        while i % current_num == 0 and current_num >= 3:
+            current_num -= 1
+
+        if current_num == 2:
+            return i
+
+
 def problem_8(n):
     """ Return the product of the n adjacent digits in the provided number with the greatest product.
         Previous product represents the sum of n - 1 adjacent digits so that when the next product is found,
@@ -462,5 +475,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_4(3))
+    print(problem_5(20))
     print("--- %s seconds ---" % (time.time() - start_time))
