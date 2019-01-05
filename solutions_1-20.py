@@ -3,8 +3,7 @@
 # Date created: 12/23/18
 # Python Version: 3.7
 
-# This file currently contains the algorithms used for solving various problems between 1 and 20 (inclusive)
-# from projecteuler.net
+# This file contains the algorithms used for solving problems 1 through 20 (inclusive) from projecteuler.net
 
 import math
 import time
