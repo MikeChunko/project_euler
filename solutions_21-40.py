@@ -41,7 +41,31 @@ def problem_21(n):
     return amicable_sum
 
 
+def problem_22(n):
+    """ Return the sum of all the name scores in the file n.
+        The name score is defined as the sum of the alphabetical values for each letter in the name
+        multiplied by its alphabetical position. """
+    file = open(n, "r")
+    name_list = file.read().split(",")
+    file.close()
+
+    # Remove the extra double quotes surrounding each name
+    for i in range(0, len(name_list)):
+        name_list[i] = name_list[i][1:-1]
+
+    name_list.sort()
+
+    name_scores = [0] * len(name_list)
+    for i in range(0, len(name_list)):
+        for char in name_list[i]:
+            name_scores[i] += ord(char) - 64
+
+        name_scores[i] *= i + 1
+
+    return sum(name_scores)
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_21(10000))
+    print(problem_22("p022_names.txt"))
     print("--- %s seconds ---" % (time.time() - start_time))
