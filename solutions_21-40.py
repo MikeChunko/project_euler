@@ -65,7 +65,39 @@ def problem_22(n):
     return sum(name_scores)
 
 
+def problem_23():
+    """ Return the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+        An abundant number is one whose proper divisors add up to be greater than itself.
+        It is known that all integers greater than 28123 can be written as the sum of two abundant numbers.
+        This function works, just not remotely fast. """
+
+    def is_abundant(n):
+        """ Return True if n is abundant. """
+        divisor_sum = 1
+        for i in range(2, n // 2 + 1):
+            if n % i == 0:
+                divisor_sum += i
+
+        return divisor_sum > n
+
+    abundant_numbers = [i for i in range(1, 28123) if is_abundant(i)]
+
+    sums = 0
+    # It is known that the first abundant number is 12
+    for i in range(12, 28123 + 1):
+        for j in abundant_numbers:
+            if j > i:
+                sums += i
+                print("GOTCHA")
+                break
+            if j - i in abundant_numbers:
+                break
+            print(i)
+
+    return sums
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_22("p022_names.txt"))
+    print(problem_23())
     print("--- %s seconds ---" % (time.time() - start_time))
