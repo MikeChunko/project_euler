@@ -115,7 +115,19 @@ def problem_24(n):
     return list(all_permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))[n - 1]
 
 
+def problem_25(n):
+    """ Return the index of the first Fibonacci number to contain n digits. """
+    current = previous = 1
+    index = 2
+    while len(str(current)) < n:
+        current += previous
+        previous = current - previous
+        index += 1
+
+    return index
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_24(1 * 10 ** 6))
+    print(problem_25(10000))
     print("--- %s seconds ---" % (time.time() - start_time))
