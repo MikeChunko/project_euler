@@ -97,7 +97,25 @@ def problem_23():
     return sums
 
 
+def problem_24(n):
+    """ Return the nth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9.
+        A lexicographic permutation is one where the list of all permutations is sorted numerically/alphabetically"""
+    elements = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    def all_permutations(elements):
+        """ Return a list of all possible permutations of elements, with each permutation expressed as a list. """
+        if len(elements) <= 1:
+            yield elements
+        else:
+            for i in range(0, len(elements)):
+                for permutation in all_permutations(elements[0:i] + elements[i + 1:]):
+                    permutation.insert(0, elements[i])
+                    yield permutation
+
+    return list(all_permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))[n - 1]
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_23())
+    print(problem_24(1 * 10 ** 6))
     print("--- %s seconds ---" % (time.time() - start_time))
