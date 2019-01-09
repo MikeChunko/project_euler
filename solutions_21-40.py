@@ -129,7 +129,34 @@ def problem_25(n):
     return index
 
 
+def problem_26(n):
+    """ Return the number < n for which 1 / n has the longest recurring cycle in its decimal fraction part.
+        For example 1 / 6 = 0.1(6) has a 1-digit recurring cycle. """
+    current = 2
+    max_cycle = max_int = 0
+
+    while current < n:
+        # The first remainder will always be 1
+        remainders = [1, 10 % current]
+
+        while remainders[-1] != 0 and remainders[-1] not in remainders[0:-1]:
+            remainders += [(remainders[-1] * 10) % current]
+
+        if remainders[-1] == 0:
+            cycle = 0
+        else:
+            cycle = len(remainders) - 1
+
+        if cycle > max_cycle:
+            max_cycle = cycle
+            max_int = current
+
+        current += 1
+
+    return max_int
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_25(1000))
+    print(problem_26(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
