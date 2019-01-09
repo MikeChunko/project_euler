@@ -119,7 +119,9 @@ def problem_25(n):
     """ Return the index of the first Fibonacci number to contain n digits. """
     current = previous = 1
     index = 2
-    while len(str(current)) < n:
+
+    # int(math.log10(current) is a much faster way of finding the number of digits than len(str(current))
+    while int(math.log10(current)) + 1 < n:
         current += previous
         previous = current - previous
         index += 1
@@ -129,5 +131,5 @@ def problem_25(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_25(10000))
+    print(problem_25(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
