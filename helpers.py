@@ -21,11 +21,7 @@ def eratosthenes_sieve(n):
         i = 0
         current_prime = primes[-1]
         while i < len(possible_primes):
-
-            if possible_primes[i] % current_prime == 0:
                 possible_primes.remove(possible_primes[i])
                 i += current_prime - 1
-
-            i += 1
 
     return primes
