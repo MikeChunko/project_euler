@@ -12,16 +12,17 @@ import sys
 
 def eratosthenes_sieve(n):
     """ Return all prime numbers <= n using the Sieve of Eratosthenes. """
+    prime = [True for i in range(n + 1)]
+    p = 2
+    while p * p <= n:
+        if prime[p]:
+            for i in range(p * 2, n + 1, p):
+                prime[i] = False
+        p += 1
+
     primes = [1]
-    possible_primes = list(range(2, n + 1))
-
-    while possible_primes:
-        primes += [possible_primes[0]]
-
-        i = 0
-        current_prime = primes[-1]
-        while i < len(possible_primes):
-                possible_primes.remove(possible_primes[i])
-                i += current_prime - 1
+    for p in range(2, n):
+        if prime[p]:
+            primes += [p]
 
     return primes
