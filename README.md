@@ -6,7 +6,7 @@ All files are named as
     solutions_a-b.py
 ```
 where ```a``` is the lower limit of the problem number solved in the file and ```b``` is the upper limit.
-Solutions to all problems in the range specified are not necessarily included.
+Solutions to *all* problems in the range specified are not necessarily included.
 
 All solutions follow the format
 ```python
@@ -16,3 +16,5 @@ def problem_n(...):
     code
 ```
 where ```n``` is the number problem.
+
+The file ```helper.py``` is also included and contains various minor functions commonly used to help solve other problems.
