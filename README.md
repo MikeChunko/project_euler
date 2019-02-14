@@ -17,4 +17,4 @@ def problem_n(...):
 ```
 where ```n``` is the number problem.
 
-The file ```helper.py``` is also included and contains various minor functions commonly used to help solve other problems.
+The file ```helper.py``` is also included and contains various minor functions commonly used to help solve other problems.  
