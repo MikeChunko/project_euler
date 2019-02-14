@@ -89,11 +89,9 @@ def problem_23():
         for j in abundant_numbers:
             if j > i:
                 sums += i
-                print("GOTCHA")
                 break
             if j - i in abundant_numbers:
                 break
-            print(i)
 
     return sums
 
@@ -271,5 +269,5 @@ def problem_28(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_24(10))
+    print(problem_23())
     print("--- %s seconds ---" % (time.time() - start_time))
