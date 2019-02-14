@@ -26,3 +26,15 @@ def eratosthenes_sieve(n):
             primes += [p]
 
     return primes
+
+
+def list_print(lst):
+    """ Return a string containig lst represented in a nicer format. """
+    result = ""
+
+    for i in lst:
+        for j in i:
+            result += str(j) + "\t"
+        result += "\n"
+
+    return result
