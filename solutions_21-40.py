@@ -190,7 +190,87 @@ def problem_27():
     return a_max * b_max
 
 
+def problem_28(n):
+    """ Return the sum of the numbers on the diagonals of a n*n spiral.
+        The spiral is made by starting with '1' at the center and moving to the right in a clockwise direction.
+        A 3*3 would be: 7 8 9
+                        6 1 2
+                        5 4 3.
+        Input n: Must be an odd number. """
+
+    # Initialize the grid making sure it's a deep copy of '0's
+    grid = []
+    for i in range(0, n):
+        tmp = []
+        for j in range(0, n):
+            tmp += [0]
+        grid += [tmp]
+
+    # Create the spiral
+    current = iteration = 1
+    i = j = n // 2
+    grid[i][j] = current
+    current += 1
+    while j < n and i < n:
+
+        for k in range(0, iteration):
+            j += 1
+            if j >= n or i >= n:
+                break
+            grid[i][j] = current
+            current += 1
+
+        if j >= n or i >= n:
+            break
+
+        for k in range(0, iteration):
+            i += 1
+            if j >= n or i >= n:
+                break
+            grid[i][j] = current
+            current += 1
+
+        iteration += 1
+
+        for k in range(0, iteration):
+            j -= 1
+            if j >= n or i >= n:
+                break
+            grid[i][j] = current
+            current += 1
+
+        for k in range(0, iteration):
+            i -= 1
+            if j >= n or i >= n:
+                break
+            grid[i][j] = current
+            current += 1
+
+        iteration += 1
+
+    # Calculate the sum of the diagonals
+    running_sum = 0
+
+    i = j = 0
+    while j < n and i < n:
+        running_sum += grid[i][j]
+        i += 1
+        j += 1
+
+    i = 0
+    j = n - 1
+    while j >= 0 and i < n:
+        running_sum += grid[i][j]
+        i += 1
+        j -= 1
+
+    # Remove the double-counted center number
+    running_sum -= 1
+
+    return running_sum
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_27())
+    print(problem_28(1001))
     print("--- %s seconds ---" % (time.time() - start_time))
