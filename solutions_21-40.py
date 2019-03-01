@@ -294,7 +294,20 @@ def problem_30(n):
     return result
 
 
+def problem_31(n, coins):
+    """ Return the number of ways n can be made by using any number of coins.
+        Input n: The value to be made in pence
+        Input coins: A list of all possible coins.
+        The inputs must be whole numbers due to problems representing decimal numbers in binary. """
+    if not coins or n < 0:
+        return 0
+    if n == 0:
+        return 1
+
+    return problem_31(n - coins[0], coins) + problem_31(n, coins[1:])
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_30(5))
+    print(problem_31(200, [1, 2, 5, 10, 20, 50, 100, 200]))
     print("--- %s seconds ---" % (time.time() - start_time))
