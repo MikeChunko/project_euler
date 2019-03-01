@@ -29,7 +29,7 @@ def eratosthenes_sieve(n):
 
 
 def list_print(lst):
-    """ Return a string containig lst represented in a nicer format. """
+    """ Return a string containing lst represented in a nicer format. """
     result = ""
 
     for i in lst:
