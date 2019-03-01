@@ -7,7 +7,6 @@
 
 import math
 import time
-import sys
 import helpers
 
 
@@ -278,7 +277,24 @@ def problem_29(n):
     return len(sequence)
 
 
+def problem_30(n):
+    """ Return the sum of all the numbers that can be written as the sum of nth powers of their digits. """
+    result = 0
+
+    for i in range(2, 354294 + 1):  # 354294 is a reasonable upper bound
+        temp = i
+        summation = 0
+        while temp / 10 != 0:
+            summation += math.pow(temp % 10, n)
+            temp //= 10
+
+        if summation == i:
+            result += i
+
+    return result
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_29(100))
+    print(problem_30(5))
     print("--- %s seconds ---" % (time.time() - start_time))
