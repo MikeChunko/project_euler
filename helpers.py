@@ -5,10 +5,6 @@
 
 # This file contains some common helper algorithms used in solving various problem
 
-import math
-import time
-import sys
-
 
 def eratosthenes_sieve(n):
     """ Return all prime numbers <= n using the Sieve of Eratosthenes. """
