@@ -267,7 +267,18 @@ def problem_28(n):
     return running_sum
 
 
+def problem_29(n):
+    """ Return the number of distinct terms in the sequence generate by a^b for 2 <= a <= n and 2 <= b <= n.
+        If the upper limit on a and b were 4, then the sequence would be: 4, 8, 9, 16, 27, 64, 81, 256. """
+    sequence = set()
+    for a in range(2, n + 1):
+        for b in range(2, n + 1):
+            sequence.add(math.pow(a, b))
+
+    return len(sequence)
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_23())
+    print(problem_29(100))
     print("--- %s seconds ---" % (time.time() - start_time))
