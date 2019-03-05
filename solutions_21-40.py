@@ -307,7 +307,32 @@ def problem_31(n, coins):
     return problem_31(n - coins[0], coins) + problem_31(n, coins[1:])
 
 
+def problem_32(n):
+    """ Find the sum of all products whose multiplicand/multiplier/product identity can be written as 1-n pandigital.
+        An n-digit number is pandigital if each digits 1-n appears exactly once"""
+
+    def problem_32_helper(digits):
+        if len(digits) != n:
+            return False
+        for i in range(1, n + 1):
+            if str(i) not in digits:
+                return False
+        return True
+
+    pandigitals = []
+
+    for a in range(1, 10 ** (n - 3)):
+        for b in range(a, 10 ** (n - 3)):
+            if len(str(a) + str(b) + str(a * b)) > 9:
+                break
+            if problem_32_helper(str(a) + str(b) + str(a * b)) and (a * b) not in pandigitals:
+                pandigitals.append(a * b)
+                print(pandigitals)
+
+    return sum(pandigitals)
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_31(200, [1, 2, 5, 10, 20, 50, 100, 200]))
+    print(problem_32(9))
     print("--- %s seconds ---" % (time.time() - start_time))
