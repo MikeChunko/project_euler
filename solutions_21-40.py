@@ -332,7 +332,47 @@ def problem_32(n):
     return sum(pandigitals)
 
 
+def problem_33():
+    """ Return the product of four "curious fractions" when represented
+        in its lowest common terms.
+        A "curious fraction" is one where the correct simplification can be incorrectly obtained by
+        cancelling out a digit in the numerator and denominator.
+        For our purposes, we're only counting "curious fractions" less than one in value, and with two digits
+        in the numerator and denominator.
+        The fractions must also be non-trivial, meaning the shared digit cannot be a zero. """
+
+    def shared_digit(a, b):
+        """ Return the digits that is shared between the two numbers.
+            Return -1 if no digit is shared.
+            For example, shared_digits(49, 98) would return (9, 90). """
+        str_a, str_b = str(a), str(b)
+        for i in range(0, 2):
+            if str_a[i] in str_b:
+                return int(str_a[1 - i]), int(str_b[1 - str_b.index(str_a[i])])
+        return -1
+
+    fractions = []
+
+    for numerator in range(10, 99 + 1):
+        # There are known to be only four of these fractions
+        if len(fractions) == 4:
+            break
+        for denominator in range(numerator + 1, 99 + 1):
+            if shared_digit(numerator, denominator) != -1:
+                a, b = shared_digit(numerator, denominator)
+                if numerator / 10 != a and denominator / 10 != b and a != 0 and b != 0:
+                    if a / b == numerator / denominator:
+                        fractions.append([numerator, denominator])
+                        print(numerator, denominator, a, b)
+
+    product = 1
+    for x in fractions:
+        product *= x[0] / x[1]
+
+    return product
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_32(9))
+    print(problem_33())
     print("--- %s seconds ---" % (time.time() - start_time))
