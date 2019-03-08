@@ -372,7 +372,26 @@ def problem_33():
     return product
 
 
+def problem_34():
+    """ Return the sum of all numbers which are equal to the sum of the factorial of their digits. """
+    factorials = []
+    for i in range(0, 10):
+        factorials.append(math.factorial(i))
+
+    running_total = 0
+
+    for i in range(10, 2540161):
+        total = 0
+        for x in str(i):
+            total += factorials[int(x)]
+
+        if i == total:
+            running_total += i
+
+    return running_total
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_33())
+    print(problem_34())
     print("--- %s seconds ---" % (time.time() - start_time))
