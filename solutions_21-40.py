@@ -391,7 +391,25 @@ def problem_34():
     return running_total
 
 
+def problem_35(n):
+    """ Return the number of circular primes below n.
+        A number is a circular prime if it and all of its circular rotations are prime. """
+    result = [2, 3, 5]
+    primes = helpers.eratosthenes_sieve(n)
+
+    for i in range(7, n + 1, 2):
+        if i % 5 != 0 and i % 3 != 0 and i not in result:
+            for j in helpers.number_rotations(i):
+                if j not in primes:
+                    break
+            else:
+                result.append(helpers.number_rotations(i))
+                print(i)
+
+    return len(result)
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_34())
+    print(problem_35(10 ** 5))
     print("--- %s seconds ---" % (time.time() - start_time))

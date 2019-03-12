@@ -43,7 +43,7 @@ def number_rotations(n):
     result = []
 
     for i in range(0, len(current)):
-        result.append(int(current))
         current = current[-1] + current[:-1]
+        result.append(int(current))
 
     return result
