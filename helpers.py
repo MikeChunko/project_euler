@@ -34,3 +34,16 @@ def list_print(lst):
         result += "\n"
 
     return result
+
+
+def number_rotations(n):
+    """ Return the list of all circular rotations of the number n.
+    Example: number_rotations(917) -> [917, 719, 197]. """
+    current = str(n)
+    result = []
+
+    for i in range(0, len(current)):
+        result.append(int(current))
+        current = current[-1] + current[:-1]
+
+    return result
