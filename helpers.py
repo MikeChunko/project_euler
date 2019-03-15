@@ -86,3 +86,14 @@ def binary_to_decimal(s):
         s = s[:-1]
 
     return result
+
+
+def is_palindrome(s):
+    """ Return True if the string s is a palindrome.
+        Return False otherwise. """
+    while s:
+        if s[0] != s[-1]:
+            return False
+        s = s[1:-1]
+
+    return True
