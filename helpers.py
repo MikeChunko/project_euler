@@ -47,3 +47,28 @@ def number_rotations(n):
         result.append(int(current))
 
     return result
+
+
+def decimal_to_binary(n):
+    """ Return a string representing the binary representation of the decimal number n.
+        The resulting string does not contain any leading zeroes. """
+    if n == 0:
+        return "0"
+
+    result = ""
+
+    current_power = 1
+
+    while current_power * 2 <= n:
+        current_power *= 2
+
+    while current_power >= 1:
+        if n - current_power >= 0:
+            n -= current_power
+            result += "1"
+        else:
+            result += "0"
+
+        current_power /= 2
+
+    return result
