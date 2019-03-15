@@ -409,7 +409,19 @@ def problem_35(n):
     return len(result)
 
 
+def problem_36(n):
+    """ Return the sum of all numbers less than n which are palindromic in both base 10 and base 2.
+        Leading zeros are not to be included in determining if a number is palindromic. """
+    palindrome_sum = 0
+    for i in range(1, n):
+        if helpers.is_palindrome(str(i)) and helpers.is_palindrome(helpers.decimal_to_binary(i)):
+            palindrome_sum += i
+            print(i)
+
+    return palindrome_sum
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_35(10 ** 5))
+    print(problem_36(10 ** 6))
     print("--- %s seconds ---" % (time.time() - start_time))
