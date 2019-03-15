@@ -72,3 +72,17 @@ def decimal_to_binary(n):
         current_power /= 2
 
     return result
+
+
+def binary_to_decimal(s):
+    """ Return an int representing a decimal representation of the binary number stored in the string s. """
+    result = 0
+    current_power = 1
+
+    while s:
+        if s[-1] == "1":
+            result += current_power
+        current_power *= 2
+        s = s[:-1]
+
+    return result
