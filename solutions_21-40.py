@@ -421,7 +421,50 @@ def problem_36(n):
     return palindrome_sum
 
 
+def problem_37():
+    """ Return the sum of all primes that are both trunctable from right to left and left to right.
+        A prime is trunctable if, when removing a digit from either end, it remains prime.
+        There are known to be only 11 such numbers.
+        Single-digit primes are not considered trunctable primes. """
+    primes = helpers.eratosthenes_sieve(10 * (10 ** 6))
+    primes.remove(1)
+    trunctable_primes = []
+
+    for i in primes[4:]:  # Skip 2, 3, 5, and 7
+        if len(trunctable_primes) == 11:  # We are only finding the first 11 trunctable primes
+            break
+
+        str_i = str(i)
+
+        # A trunctable prime with 3+ digits cannot contain an even number
+        if i > 100 and ('2' in str_i or '4' in str_i or '6' in str_i or '8' in str_i):
+            continue
+
+        # Left-to-right trunctable
+        num = str_i[1:]
+        while num and int(num) in primes:
+            num = num[1:]
+
+        if num:
+            continue
+
+        # Right-to-left trunctable
+        num = str_i[:-1]
+        while num and int(num) in primes:
+            num = num[:-1]
+
+        if num:
+            continue
+
+        trunctable_primes.append(i)
+        print(i)
+
+    print(trunctable_primes)
+
+    return sum(trunctable_primes)
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_36(10 ** 6))
+    print(problem_37())
     print("--- %s seconds ---" % (time.time() - start_time))
