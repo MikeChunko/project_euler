@@ -5,6 +5,8 @@
 
 # This file contains some common helper algorithms used in solving various problem
 
+import math
+
 
 def eratosthenes_sieve(n):
     """ Return all prime numbers <= n using the Sieve of Eratosthenes. """
@@ -97,3 +99,23 @@ def is_palindrome(s):
         s = s[1:-1]
 
     return True
+
+
+def is_coprime(a, b):
+    """ Return True if the two numbers are coprime with each other.
+        Return False otherwise.
+        If either of the numbers are 1 or -1 they count as being coprime"""
+    if math.gcd(a, b) == 1 or abs(a) == 1 or abs(b) == 1:
+        return True
+    return False
+
+
+def fibonacci(n):
+    """ Return a list of the first n Fibonacci numbers.
+        n is assumed to be >= 2."""
+    fibonacci_lst = [0, 1]
+
+    for i in range(0, n - 2):
+        fibonacci_lst.append(fibonacci_lst[-1] + fibonacci_lst[-2])
+
+    return fibonacci_lst
