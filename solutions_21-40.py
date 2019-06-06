@@ -464,7 +464,35 @@ def problem_37():
     return sum(trunctable_primes)
 
 
+def problem_40():
+    """ Return d_1 * d_10 * d_100 * d_1000 * d_10000 * d_100000 * d_1000000.
+        d_n is the nth digit to the right of the decimal of Champernowne's constant.
+        Champernowne's constant is known to be an irrational fraction created by concatenating all positive
+        integers such that it equals 0.123456789101112... """
+
+    # This problem resolves to a simple math problem
+    # Consider that the 1-9th digits would be composed of the single digit positive integers
+    # Continuing this for other integers we get that:
+    # 1-9           : 1-9
+    # 10-99         : 10-189
+    # 100-999       : 190-2889
+    # 1000-9999     : 2890-38889
+    # 10000-99999   : 38890-488889
+    # 100000-999999 : 488890-5888889
+
+    # Using this table we can easily find the values of any d_n
+    d_1 = 1
+    d_10 = 1
+    d_100 = 5
+    d_1000 = 3
+    d_10000 = 7
+    d_100000 = 2
+    d_1000000 = 1
+
+    return d_1 * d_10 * d_100 * d_1000 * d_10000 * d_100000 * d_1000000
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_37())
+    print(problem_40())
     print("--- %s seconds ---" % (time.time() - start_time))
