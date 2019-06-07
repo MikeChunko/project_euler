@@ -119,3 +119,16 @@ def fibonacci(n):
         fibonacci_lst.append(fibonacci_lst[-1] + fibonacci_lst[-2])
 
     return fibonacci_lst
+
+
+def is_pandigital(num, n):
+    """ Return True if num is n-digit pandigital.
+        Return False otherwise.
+        A number is n-digit pandigital if it makes use of all the digits 1 to n exactly once. """
+    while n > 0:
+        if str(n) not in str(num):
+            return False
+        else:
+            n -= 1
+
+    return True
