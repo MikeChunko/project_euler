@@ -132,3 +132,13 @@ def is_pandigital(num, n):
             n -= 1
 
     return True
+
+
+def quadratic(a, b, c):
+    """ Use the quadratic formula to solve a quadratic equation using the given coefficients.
+        The first term in the return '-' for the plus/minus, and the second term is with it as '+'. """
+    sqr_discriminant = math.sqrt((b ** 2) - (4 * a * c))
+    first = (-b - sqr_discriminant) / (2 * a)
+    second = (-b + sqr_discriminant) / (2 * a)
+
+    return first, second
