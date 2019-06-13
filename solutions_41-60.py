@@ -27,7 +27,26 @@ def problem_41():
     pass
 
 
+def problem_45():
+    """ Return the first triangle number (after 40755) that is also pentagonal and hexagonal.
+        Triangle   T_n = n(n+1)/2
+        Pentagonal P_n = n(3n-1)/2
+        Hexagonal  H_n = n(2n-1) """
+
+    # The n corresponding to T_n = 40755 can be found to be 285
+    n = 285 + 1
+
+    while True:
+        T_n = (n * (n + 1)) // 2
+        P_n = helpers.quadratic(3, -1, -T_n * 2)[1]
+        if int(P_n) == P_n:
+            H_n = helpers.quadratic(2, -1, -T_n)[1]
+            if int(H_n) == H_n:
+                return T_n
+        n += 1
+
+
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_41())
+    print(problem_45())
     print("--- %s seconds ---" % (time.time() - start_time))
