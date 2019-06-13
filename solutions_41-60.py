@@ -5,7 +5,6 @@
 
 # This file contains the algorithms used for solving problems 21 through 40 (inclusive) from projecteuler.net
 
-import math
 import time
 import helpers
 
@@ -29,20 +28,20 @@ def problem_41():
 
 def problem_45():
     """ Return the first triangle number (after 40755) that is also pentagonal and hexagonal.
-        Triangle   T_n = n(n+1)/2
-        Pentagonal P_n = n(3n-1)/2
-        Hexagonal  H_n = n(2n-1) """
+        Triangle   t_n = n(n+1)/2
+        Pentagonal p_n = n(3n-1)/2
+        Hexagonal  h_n = n(2n-1) """
 
-    # The n corresponding to T_n = 40755 can be found to be 285
+    # The n corresponding to t_n = 40755 can be found to be 285
     n = 285 + 1
 
     while True:
-        T_n = (n * (n + 1)) // 2
-        P_n = helpers.quadratic(3, -1, -T_n * 2)[1]
-        if int(P_n) == P_n:
-            H_n = helpers.quadratic(2, -1, -T_n)[1]
-            if int(H_n) == H_n:
-                return T_n
+        t_n = (n * (n + 1)) // 2
+        p_n = helpers.quadratic(3, -1, -t_n * 2)[1]
+        if int(p_n) == p_n:  # Checking that t_n is also a pentagonal number
+            h_n = helpers.quadratic(2, -1, -t_n)[1]
+            if int(h_n) == h_n:  # Checking that t_n is also a hexagonal number
+                return t_n
         n += 1
 
 
