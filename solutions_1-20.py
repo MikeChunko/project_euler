@@ -522,9 +522,7 @@ def problem_19():
     """ Return the number of Sundays that fell on the first of the month between 1 Jan 1901 and 31 Dec 2000.
         The fact that 1 Jan 1900 was a Monday, the number of days in a month, and how to determine if a year
         is a leap year are given. """
-    days_in_a_week = 7
     current_day = 2  # 1 represents a Sunday, 2 a Monday, and so on
-    current_month = 1  # 1 represents Jan, 2 Feb, and so on
     current_year = 1900
 
     # The first element represents the days in January, the 2nd in February, and so on
@@ -542,7 +540,7 @@ def problem_19():
 
     sunday_count = 0  # The number of Sundays that have fallen on the first of the month
     while current_year < 2001:
-        current_month = 1
+        current_month = 1  # 1 represents Jan, 2 Feb, and so on
         while current_month <= 12:
             if current_month == 2 and is_leap_year(current_year):
                 current_day += 29
@@ -573,5 +571,5 @@ def problem_20(n):
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_11(4))
+    print(problem_19())
     print("--- %s seconds ---" % (time.time() - start_time))
