@@ -468,22 +468,23 @@ def problem_39(n):
     """ Return the value of p (p <= n) for which the number of pythagorean triplets are maximized,
         where p is the perimeter of a right angle triangle with integral side lengths."""
     triplets = {}
-    for a in range(1, n // 2):  # a, b < 500 due to some simple math
-        for b in range(1, n // 2):
-            c = math.sqrt(a * a + b * b)
-            if int(c) == c and a + b + c <= 1000:
+    for a in range(1, n // 2):  # a < n/2 due to some simple math
+        sqrt_a = a * a
+        for b in range(1, a + 1):  # b <= a (to avoid repeats)
+            c = math.sqrt(sqrt_a + b * b)
+            if c % 1 == 0 and a + b + c <= n:  # c is an int, the sum of the sides doesn't exceed the max perimeter
                 if a + b + c in triplets:
                     triplets[a + b + c] += 1
                 else:
                     triplets[a + b + c] = 1
 
-    max_p = max_triplets = 0
-    for p in triplets:
+    max_p = max_triplets = 1
+    for p in triplets:  # loop through all perimeters solved for
         if triplets[p] > max_triplets:
             max_p = p
             max_triplets = triplets[p]
 
-    return max_p
+    return int(max_p)
 
 
 def problem_40():
