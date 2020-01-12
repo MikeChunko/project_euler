@@ -464,6 +464,28 @@ def problem_37():
     return sum(trunctable_primes)
 
 
+def problem_39(n):
+    """ Return the value of p (p <= n) for which the number of pythagorean triplets are maximized,
+        where p is the perimeter of a right angle triangle with integral side lengths."""
+    triplets = {}
+    for a in range(1, n // 2):  # a, b < 500 due to some simple math
+        for b in range(1, n // 2):
+            c = math.sqrt(a * a + b * b)
+            if int(c) == c and a + b + c <= 1000:
+                if a + b + c in triplets:
+                    triplets[a + b + c] += 1
+                else:
+                    triplets[a + b + c] = 1
+
+    max_p = max_triplets = 0
+    for p in triplets:
+        if triplets[p] > max_triplets:
+            max_p = p
+            max_triplets = triplets[p]
+
+    return max_p
+
+
 def problem_40():
     """ Return d_1 * d_10 * d_100 * d_1000 * d_10000 * d_100000 * d_1000000.
         d_n is the nth digit to the right of the decimal of Champernowne's constant.
@@ -494,5 +516,5 @@ def problem_40():
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_40())
+    print(problem_39(1000))
     print("--- %s seconds ---" % (time.time() - start_time))
