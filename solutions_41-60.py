@@ -229,6 +229,21 @@ def problem_42():
     return num_words
 
 
+def problem_43():
+    """ Return the sum of all 0 to 9 pandigital numbers such that (where d_1 is the 1st digit, d_2 is the 2nd, etc.)
+        d_2d_3d_4 is divisible by 2,
+        d_3d_4d_5 is divisible by 3,
+        d_4d_5d_6 is divisible by 5,
+        ...
+        d_8d_9d_10 is divisible by 17. """
+
+    # From some basic mathematical analysis, we get that d_4 must be even, d_3 + d_4 + d_5 is divisible by 3,
+    # d_6 is equal to 5 (since otherwise it would be 0 but that would mean d_6d_7d_8 is never divisible by 11.
+    # We can refine our search space further, getting that the number starting at d_3 must be
+    # 30952867, 60357289, or 06357289
+    return 1430952867 + 1460357289 + 1406357289 + 4130952867 + 4160357289 + 4106357289
+
+
 def problem_45():
     """ Return the first triangle number (after 40755) that is also pentagonal and hexagonal.
         Triangle   t_n = n(n+1)/2
@@ -249,5 +264,5 @@ def problem_45():
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(problem_42())
+    print(problem_43())
     print("--- %s seconds ---" % (time.time() - start_time))
