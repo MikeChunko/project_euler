@@ -5,8 +5,10 @@
 
 # This file contains the algorithms used for solving problems 21 through 40 (inclusive) from projecteuler.net
 
+import math
 import time
 import helpers
+from itertools import permutations
 
 
 def problem_41():
@@ -241,7 +243,25 @@ def problem_43():
     # d_6 is equal to 5 (since otherwise it would be 0 but that would mean d_6d_7d_8 is never divisible by 11.
     # We can refine our search space further, getting that the number starting at d_3 must be
     # 30952867, 60357289, or 06357289
-    return 1430952867 + 1460357289 + 1406357289 + 4130952867 + 4160357289 + 4106357289
+    # return 1430952867 + 1460357289 + 1406357289 + 4130952867 + 4160357289 + 4106357289
+    # 16695334890
+    total = 0
+    pandigitals = list(permutations(range(0, 10)))
+    for num in pandigitals:
+        if num[3] % 2 != 0 or num[5] != 5 or (num[2] + num[3] + num[4]) % 3 != 0:
+            continue
+        if ((num[4] * 100) + (num[5] * 10) + num[6]) % 7 != 0:
+            continue
+        if ((num[5] * 100) + (num[6] * 10) + num[7]) % 11 != 0:
+            continue
+        if ((num[6] * 100) + (num[7] * 10) + num[8]) % 13 != 0:
+            continue
+        if ((num[7] * 100) + (num[8] * 10) + num[9]) % 17 != 0:
+            continue
+        for i in range(9, -1, -1):
+            total += num[i] * math.pow(10, 10 - i - 1)
+
+    return int(total)
 
 
 def problem_45():
