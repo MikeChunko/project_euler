@@ -247,19 +247,17 @@ def problem_43():
     # 16695334890
     total = 0
     pandigitals = list(permutations(range(0, 10)))
+    divisors = [7, 11, 13, 17]
     for num in pandigitals:
         if num[3] % 2 != 0 or num[5] != 5 or (num[2] + num[3] + num[4]) % 3 != 0:
             continue
-        if ((num[4] * 100) + (num[5] * 10) + num[6]) % 7 != 0:
-            continue
-        if ((num[5] * 100) + (num[6] * 10) + num[7]) % 11 != 0:
-            continue
-        if ((num[6] * 100) + (num[7] * 10) + num[8]) % 13 != 0:
-            continue
-        if ((num[7] * 100) + (num[8] * 10) + num[9]) % 17 != 0:
-            continue
-        for i in range(9, -1, -1):
-            total += num[i] * math.pow(10, 10 - i - 1)
+
+        for i in range(0, len(divisors)):  # Check all divisions
+            if ((num[i + 4] * 100) + (num[i + 5] * 10) + num[i + 6]) % divisors[i] != 0:
+                break
+        else:  # Run only if num is divisible by everything in divisors
+            for i in range(9, -1, -1):  # Convert num to a proper number and add it to total
+                total += num[i] * math.pow(10, 10 - i - 1)
 
     return int(total)
 
