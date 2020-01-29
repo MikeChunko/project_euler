@@ -241,10 +241,9 @@ def problem_43():
 
     # From some basic mathematical analysis, we get that d_4 must be even, d_3 + d_4 + d_5 is divisible by 3,
     # d_6 is equal to 5 (since otherwise it would be 0 but that would mean d_6d_7d_8 is never divisible by 11.
-    # We can refine our search space further, getting that the number starting at d_3 must be
-    # 30952867, 60357289, or 06357289
-    # return 1430952867 + 1460357289 + 1406357289 + 4130952867 + 4160357289 + 4106357289
-    # 16695334890
+    # We can refine our search space further and rather easily get the precise numbers meeting this definition.
+    # For interest's sake, we do not refine the search space this far
+    
     total = 0
     pandigitals = list(permutations(range(0, 10)))
     divisors = [7, 11, 13, 17]
